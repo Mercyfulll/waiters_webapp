@@ -34,9 +34,20 @@ app.post("/",async function(req,res){
 
     console.log(waiters_Name)
     console.log(daysOfTheWeek)
-    // await db.none(`INSERT INTO schedule (iters_name) VALUES ($1)`,[waiters_Name])
+    
+    
+    // Insert the waiter's name into the schedule table
+     await db.one('INSERT INTO schedule (waiters_name) VALUES ($1) RETURNING id', [waiters_Name]);
+    // const waiterId = waiterResult.id;
 
-    res.render("index")
+    // Insert the days into the schedule table and link to workdays table
+    for (const dayOfWeek of daysOfTheWeek) {
+      await db.none('INSERT INTO schedule (waiters_name, days_id) VALUES ($1, (SELECT id FROM workdays WHERE daysOfWeek = $2))', [waiters_Name, dayOfWeek]);
+    }
+
+    // Redirect or respond as needed
+    res.render('index');
+  
 })
 
 app.post("/waiters/:username", async function(req,res){
