@@ -3,8 +3,9 @@ import {engine} from "express-handlebars";
 import bodyParser from "body-parser";
 import pgPromise from "pg-promise";
 
+
 var app = express();
-var pgp = pgPromise;
+var pgp = pgPromise();
 
 var connectionString = process.env.DATABASE_URL || 'postgres://ncmlcbqz:SXVviMgE6Vt3-ssTYfVB6Wsj42Tw4t0N@trumpet.db.elephantsql.com/ncmlcbqz?ssl=true'
 
@@ -31,7 +32,7 @@ app.post("/",async function(req,res){
     const waiters_Name = req.body.uName
     const daysOfTheWeek = req.body.daysOfWeek
 
-    await db.none(`INSERT INTO schedule (waiters_name) VALUES ($1)`,[waiters_Name])
+    // await db.none(`INSERT INTO schedule (waiters_name) VALUES ($1)`,[waiters_Name])
 
     res.render("index")
 })
