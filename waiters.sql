@@ -5,8 +5,8 @@ CREATE TABLE workdays (
 
 CREATE TABLE schedule(
     id SERIAL PRIMARY KEY ,
-    waiters_name TEXT NOT NULL,
-    days_id INT REFERENCES workdays (id)  
+    waiters_name TEXT NOT NULL,  
+    days_id INT REFERENCES workdays (id) 
 );
 
 

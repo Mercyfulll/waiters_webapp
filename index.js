@@ -29,10 +29,12 @@ app.get("/", async function(req,res){
 })
 
 app.post("/",async function(req,res){
-    const waiters_Name = req.body.uName
-    const daysOfTheWeek = req.body.daysOfWeek
+    const waiters_Name = req.body.uName       
+    const daysOfTheWeek = req.body.daysOfWeek   
 
-    // await db.none(`INSERT INTO schedule (waiters_name) VALUES ($1)`,[waiters_Name])
+    console.log(waiters_Name)
+    console.log(daysOfTheWeek)
+    // await db.none(`INSERT INTO schedule (iters_name) VALUES ($1)`,[waiters_Name])
 
     res.render("index")
 })
