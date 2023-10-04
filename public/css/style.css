@@ -31,7 +31,6 @@ body{
 
 button{
     margin-bottom: 2em;
-    margin-top: 0.2em;
     padding: 0.7em;
     background-color: #3a2618;
     color: #9a8873;
@@ -67,3 +66,22 @@ input[type='checkbox']:checked {
     border: 2px solid currentColor;
     border-radius: 50%;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.5em;
+  }
+  
+  tr {
+    border-bottom: 1px solid #ddd;
+  }
+  .success{
+    margin-bottom: 1em;
+    font-size: large;
+    color:green;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }

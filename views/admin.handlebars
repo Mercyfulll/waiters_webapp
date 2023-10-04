@@ -3,12 +3,16 @@
     <table>
         <tr>
             <th>Days</th>
+            <th>Name of waiter</th>
         </tr>
+        {{#each scheduled}}
         <tr>
-            <td>Name of waiter</td>
+            <td>{{this.daysofweek}}</td>
+            <td>{{this.waiters_name}}</td>
         </tr>
+        {{/each}}
     </table>
-    <form action="/days" method="post">
+    <form action="/reset" method="post">
         <button type="submit">Reset data</button>
     </form>
 </div>
