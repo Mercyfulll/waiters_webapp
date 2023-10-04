@@ -30,6 +30,7 @@ body{
 }
 
 button{
+    margin-top: 0.5em;
     margin-bottom: 2em;
     padding: 0.7em;
     background-color: #3a2618;
@@ -79,7 +80,7 @@ table {
   .success{
     margin-bottom: 1em;
     font-size: large;
-    color:green;
+    color:#004600;
     text-align: center;
     margin-left: auto;
     margin-right: auto;

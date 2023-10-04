@@ -56,11 +56,11 @@ app.post("/",async function(req,res){
     for (const dayOfWeek of daysOfTheWeek) {
       await db.none('INSERT INTO schedule (waiters_name, days_id) VALUES ($1, (SELECT id FROM workdays WHERE daysOfWeek = $2))', [waiters_Name, dayOfWeek]);
     }
-        // req.flash('success','Name and days added to schedule successfully')
-        res.render('index')
+         req.flash('success','Name and days added to schedule successfully')
+        
     }
     // Redirect or respond as needed
-    res.render('index');
+    res.redirect('/');
   
 })
 
