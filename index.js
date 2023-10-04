@@ -43,8 +43,8 @@ app.post("/",async function(req,res){
     const waiters_Name = req.body.uName       
     const daysOfTheWeek = req.body.daysOfWeek 
     // const checkNameExists = await db.manyOrNone('SELECT waiters_name FROM schedule WHERE waiters_name =$1',[waiters_Name]) 
-    console.log(waiters_Name)
-    console.log(daysOfTheWeek)
+    // console.log(waiters_Name)
+    // console.log(daysOfTheWeek)
     
     if(waiters_Name && daysOfTheWeek){
     // Insert the waiter's name into the schedule table
@@ -56,7 +56,7 @@ app.post("/",async function(req,res){
     for (const dayOfWeek of daysOfTheWeek) {
       await db.none('INSERT INTO schedule (waiters_name, days_id) VALUES ($1, (SELECT id FROM workdays WHERE daysOfWeek = $2))', [waiters_Name, dayOfWeek]);
     }
-        req.flash('success','Name and days added to schedule successfully')
+        // req.flash('success','Name and days added to schedule successfully')
         res.render('index')
     }
     // Redirect or respond as needed
