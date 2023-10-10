@@ -4,15 +4,20 @@ import bodyParser from "body-parser";
 import pgPromise from "pg-promise";
 import flash from "express-flash";
 import session from "express-session";
+import waiters from "./waiters.js";
+import queries from "./services/database.js"; 
+import routes from "./routes/routes.js";
 
 
 var app = express();
 var pgp = pgPromise();
+var waiter = waiters();
 
 var connectionString = process.env.DATABASE_URL || 'postgres://ncmlcbqz:SXVviMgE6Vt3-ssTYfVB6Wsj42Tw4t0N@trumpet.db.elephantsql.com/ncmlcbqz?ssl=true'
 
 var db = pgp(connectionString)
-
+var data = queries(db)
+var route = routes(data, waiter)
 // use the express.static built-in middleware to serve static file 'css'
 app.use(express.static(('public')))
 
@@ -39,30 +44,7 @@ app.get("/", async function(req,res){
     res.render("index")
 })
 
-app.post("/",async function(req,res){
-    const waiters_Name = req.body.uName       
-    const daysOfTheWeek = req.body.daysOfWeek 
-    // const checkNameExists = await db.manyOrNone('SELECT waiters_name FROM schedule WHERE waiters_name =$1',[waiters_Name]) 
-    // console.log(waiters_Name)
-    // console.log(daysOfTheWeek)
-    
-    if(waiters_Name && daysOfTheWeek){
-    // Insert the waiter's name into the schedule table
-     await db.one('INSERT INTO schedule (waiters_name) VALUES ($1) RETURNING id', [waiters_Name]);
-     
-    // const waiterId = waiterResult.id;
-
-    // Insert the days into the schedule table and link to workdays table
-    for (const dayOfWeek of daysOfTheWeek) {
-      await db.none('INSERT INTO schedule (waiters_name, days_id) VALUES ($1, (SELECT id FROM workdays WHERE daysOfWeek = $2))', [waiters_Name, dayOfWeek]);
-    }
-         req.flash('success','Name and days added to schedule successfully')
-        
-    }
-    // Redirect or respond as needed
-    res.redirect('/');
-  
-})
+app.post("/",route.waiterPage)
 
 app.post("/waiters/:username", async function(req,res){
     const waiterName = req.params.username
@@ -71,17 +53,10 @@ app.post("/waiters/:username", async function(req,res){
 
 })
 
-app.get("/days",async function(req,res){
-    const scheduled = await db.manyOrNone(` SELECT schedule.waiters_name, workdays.daysofweek FROM workdays JOIN schedule ON schedule.days_id = workdays.id`)
-    
+app.get("/days",route.adminPage)
 
-    res.render("admin", {scheduled})
-})
+app.post("/reset", route.reset)
 
-app.post("/reset",async function(req,res){
-    await db.none(' DELETE FROM schedule')
-    res.render('admin')
-})
 const PORT = process.env.PORT || 3022
 
 app.listen(PORT, function(){

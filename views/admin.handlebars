@@ -1,17 +1,29 @@
 <div class="container">
     <h1>Waiters available for work</h1>
-    <table>
-        <tr>
+    <div>
+        {{!-- <tr>
             <th>Days</th>
             <th>Name of waiter</th>
-        </tr>
+        </tr> --}}
+        <div class="days">
+            {{#each days}}
+                <p>{{this}}</p>
+            {{/each}}
+       </div>
+        {{!-- <div class="days">
+            {{#each days}}
+                <td>{{this}}</td>
+            
+        </div> --}}
         {{#each scheduled}}
-        <tr>
-            <td>{{this.daysofweek}}</td>
-            <td>{{this.waiters_name}}</td>
-        </tr>
+        <div class="waiters">
+                    <p>{{this.waiters_name}}</p>
+        </div>
         {{/each}}
-    </table>
+    </div>
+    <span class="adminErrors">
+        {{messages.error1}}
+    </span>
     <form action="/reset" method="post">
         <button type="submit">Reset data</button>
     </form>

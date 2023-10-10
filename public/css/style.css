@@ -6,7 +6,7 @@
     margin: auto;
     margin-left: 10em;
     margin-right: 10em;
-    margin-top: 5em;
+    margin-top: 4em;
     background-color: #9a8873;
     border-radius: 12px;
 }
@@ -86,3 +86,18 @@ table {
     margin-right: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
+  .error,.errors,.adminErrors{
+        font-size: large;
+        color:crimson;
+        text-align: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    
+    form{
+        padding-top: 1em;
+    }
+
+    .days,.waiters{
+        padding: 0.2em;
+    }
+

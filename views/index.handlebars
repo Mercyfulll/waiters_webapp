@@ -3,8 +3,14 @@
     <h1>Coffee Shop</h1>
     <p>Hi! best wishes for the week</p>
     <h3>Waiters Shift</h3>
+    <span class="error">
+            {{messages.error}}
+    </span>
     <form action="/" method="post">
         <label>Name : </label><input type="text" name="uName"><br>
+        <span class="errors">
+            {{messages.error1}}
+        </span>
         <div class="days">
             <input type="checkbox" name="daysOfWeek" value="Monday" class="dayz">
             <label for="">Monday</label><br>
@@ -25,6 +31,7 @@
         <span class="success">
             {{messages.success}}
         </span>
+        
         <br>
         <button type="submit">Schedule</button>
     </form>
