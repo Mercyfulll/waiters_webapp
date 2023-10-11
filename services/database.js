@@ -1,6 +1,6 @@
 export default function queries(db){
 
-    async function checkDuplicates(waiters_Name){
+    async function checkName(waiters_Name){
         return await db.manyOrNone('SELECT waiters_name FROM schedule WHERE waiters_name =$1',[waiters_Name]) 
     }
 
@@ -13,18 +13,29 @@ export default function queries(db){
     }
 
     async function reset(){
-        await db.none(' DELETE FROM schedule')
+        await db.none('DELETE FROM schedule')
     }
 
     async function waitersSchedule(){
         return await db.manyOrNone(`SELECT schedule.waiters_name, workdays.daysofweek FROM workdays JOIN schedule ON schedule.days_id = workdays.id`)
     } 
 
+    async function getDayWorkersChose(day){
+        return await db.manyOrNone(`SELECT schedule.waiters_name, workdays.daysofweek FROM workdays JOIN
+        schedule ON schedule.days_id = workdays.id WHERE daysofweek = $1`,[day])
+    }
+
+    async function getWaitersNames(){
+        return await db.manyOrNone(`SELECT DISTINCT waiters_name FROM schedule`)
+    }
+
     return{
-        checkDuplicates,
+        checkName,
         addName,
         deleteName,
         waitersSchedule,
+        getDayWorkersChose,
+        getWaitersNames,
         reset
     }
 }

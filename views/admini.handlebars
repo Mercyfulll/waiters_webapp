@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Waiters available for work</h1>
+        <table>
+            <tr>
+                <th>Days</th>
+                <th>Name of waiter</th>
+            </tr>
+            <tr>
+                <td class="day-row">Monday</td>
+                {{#each mon}}
+                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
+                {{/each}} 
+            </tr>
+            <tr>
+                <td class="day-row">Tuesday</td>
+                {{#each tue}}
+                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
+                {{/each}} 
+            </tr>
+            <tr>
+                <td class="day-row">Wednesday</td>
+                {{#each wed}} 
+                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
+                {{/each}} 
+            </tr>
+            <tr>
+                <td class="day-row">Thursday</td>
+                {{#each thur}} 
+                <td>
+                    <li class="waiter-count">{{this.waiters_name}}</li>
+                </td>
+                {{/each}} 
+            </tr>
+            <tr>
+                <td class="day-row">Friday</td>
+                {{#each fri}}
+                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
+                {{/each}} 
+            </tr>
+            <tr>
+                <td class="day-row">Saturday</td>
+                {{#each sat}}
+                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
+                {{/each}} 
+            </tr>
+            <tr>
+                <td class="day-row">Sunday</td>
+                {{#each sun}}
+                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
+                {{/each}}
+            </tr>
+        </table>
+        <span class="adminErrors">
+            {{messages.error1}}
+        </span>
+        <form action="/reset" method="post">
+            <button type="submit">Reset data</button>
+        </form>
+        <div class="">
+            <h3>Reschedule waiter</h3>
+            <span class="adminError">
+                {{messages.error2}}
+                </span>
+                <span class="adminSucess">
+                {{messages.success2}}
+                </span>
+            <form class='adminForm' action="/days" method="post">
+                <h4>Select a waiter name</h4>
+                <label for="waiterNames">Waiter name:</label>
+                <select class="waiterName" name="waiterNames">
+                    <option value="">Select waiter</option>
+                    {{#each names}}
+                    <option value="{{this.waiters_name}}">{{this.waiters_name}}</option>
+                    {{/each}}
+                </select>
+                <h4>Select Days</h4>
+                
+                <div class="days">
+                    <input type="checkbox" name="daysOfWeek" value="Monday">
+                    <label for="">Monday</label><br>
+                    <input type="checkbox" name="daysOfWeek" value="Tuesday">
+                    <label for="">Tuesday</label><br>
+                    <input type="checkbox" name="daysOfWeek" value="Wednesday">
+                    <label for="">Wednesday</label><br>
+                    <input type="checkbox" name="daysOfWeek" value="Thursday">
+                    <label for="">Thursday</label><br>
+                    <input type="checkbox" name="daysOfWeek" value="Friday">
+                    <label for="">Friday</label><br>
+                    <input type="checkbox" name="daysOfWeek" value="Saturday">
+                    <label for="">Saturday</label><br>
+                    <input type="checkbox" name="daysOfWeek" value="Sunday">
+                    <label for="">Sunday</label><br>
+                </div>
+                <button type="submit">Reschedule</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        const messageAd = document.querySelector('.adminErrors');
+        const messageAd2 = document.querySelector('.adminError');
+          const messageAd3 = document.querySelector('.adminSucess'); 
+
+        if (messageAd.innerHTML !== '') {
+            setTimeout(function () { 
+                messageAd.innerHTML = ''; 
+            }, 3500);
+        }
+         if (messageAd2.innerHTML !== '') {
+            setTimeout(function () { 
+                messageAd2.innerHTML = ''; 
+            }, 3500);
+        }
+
+        if (messageAd3.innerHTML !== '') {
+            setTimeout(function () { 
+                messageAd3.innerHTML = ''; 
+            }, 3500);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get all elements with class "day-row"
+            const dayRows = document.querySelectorAll('.day-row');
+
+            // Loop through each "day-row" element
+            dayRows.forEach(dayRow => {
+                const waiterCounts = dayRow.querySelectorAll('.waiter-count');
+                console.log(waiterCounts.length);
+
+                // Check if the number of "waiter-count" elements is greater than 3
+                if (waiterCounts.length === 3) {
+                    // Add the "green" class to turn the "day-row" green
+                    dayRow.style.backgroundColor = 'green';
+                    dayRow.classList.add('green');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

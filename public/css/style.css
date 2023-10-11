@@ -19,7 +19,9 @@ h1,h3{
     color: #37423d;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial;
 }
-
+h2,h4{
+    color: #37423d
+}
 body{
     background-image: url("/coffee.PNG");
     background-size:cover;
@@ -44,7 +46,7 @@ input {
     border-radius: 15px;
 }
 
-input[type='checkbox'] {
+input[type='checkbox'],input[type='checkbox'] {
     width:20px;
     height:20px;
     background:white;
@@ -60,18 +62,14 @@ input[type='checkbox']:checked {
     display: inline-flex;
 }
 .dayz{
-    padding: 1em;
-    min-width: 0.75em;
-    min-height: 0.75em;
-    margin-right: 0.75em;
-    border: 2px solid currentColor;
-    border-radius: 50%;
+    padding: 0.2em;
+    display: inline-flex;
 }
 
 table {
     border-collapse: collapse;
     width: 100%;
-    margin: 1.5em;
+    margin: 1em;
   }
   
   tr {
@@ -86,18 +84,59 @@ table {
     margin-right: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
-  .error,.errors,.adminErrors{
+  .adminSucess{
+    margin-bottom: 1em;
+    font-size: large;
+    color:chartreuse;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .error,.errors,.adminError{
         font-size: large;
         color:crimson;
         text-align: center;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-    
+    .adminErrors{
+        font-size: large;
+        text-align: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #1F456E
+    }
     form{
         padding-top: 1em;
     }
+    .adminForm{
+        padding-top: 0.1em 
+    }
 
-    .days,.waiters{
+    li{
         padding: 0.2em;
+        list-style: none;
+    }
+    select {
+        
+        outline: 0;
+        background: #575404;
+        width: 17%;
+        height: 100%;
+        color: black;
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 3px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: medium;
+    }
+    .grey{
+        color: lightslategrey;
+    }
+    .red{
+        color: crimson;
+    }
+    .green{
+        background-color: #004600;
+        color: chartreuse;
     }
 

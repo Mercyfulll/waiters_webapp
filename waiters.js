@@ -40,6 +40,10 @@ export default function waiters(){
         // Convert the Set to an array and return it
         return Array.from(uniqueDayNames);
       }
+
+      function getDays (){
+        
+      }
    
     return{
         nameValidation,

@@ -49,10 +49,10 @@ app.post("/",route.waiterPage)
 app.post("/waiters/:username", async function(req,res){
     const waiterName = req.params.username
 
-    res.render("admin")
+    res.render("admini")
 
 })
-
+app.post("/days",route.adminPageFunctionality)
 app.get("/days",route.adminPage)
 
 app.post("/reset", route.reset)
