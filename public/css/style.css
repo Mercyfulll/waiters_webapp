@@ -60,8 +60,12 @@ input[type='checkbox']:checked {
 
 .days{
     display: inline-flex;
-    width: 100%;
+    width: 95%;
     
+}
+.daysOf{
+    margin-top: 0.8em;
+    display: inline-flex;
 }
 .dayz{
     width: 100%;
