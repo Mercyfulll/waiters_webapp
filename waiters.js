@@ -1,6 +1,7 @@
 export default function waiters(){
     var reg = '';
     var msg = '';
+    var id = 0;
     
 
     function nameValidation(name){
@@ -27,27 +28,35 @@ export default function waiters(){
             return msg
     }
 
-    function getUniqueDayNames(records) {
-        // Create an empty Set to store unique day names
-        const uniqueDayNames = new Set();
-      
-        // Iterate through each record in the 'records' array
-        records.forEach(record => {
-          // Add the 'day' property of each record to the Set
-          uniqueDayNames.add(record.daysofweek);
-        });
-      
-        // Convert the Set to an array and return it
-        return Array.from(uniqueDayNames);
+    function getDayId(day) {
+        if(day === 'Monday'){
+            id = 1
+        }
+        else if(day === 'Tuesday'){
+            id = 2
+        }
+        else if(day === 'Wednesday' ){
+            id = 3
+        }
+        else if(day ==='Thursday'){
+            id = 4
+        }
+        else if(day ==='Friday'){
+            id = 5
+        }
+        else if(day === 'Saturday'){
+            id = 6
+        }
+        else if(day ==='Sunday'){
+            id = 7
+        }
+        return id
       }
 
-      function getDays (){
-        
-      }
    
     return{
         nameValidation,
         validationErrors,
-        getUniqueDayNames
+        getDayId
     }
 }

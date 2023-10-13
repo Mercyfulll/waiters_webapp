@@ -45,16 +45,9 @@ app.get("/", async function(req,res){
 })
 
 app.post("/",route.waiterPage)
-
-app.post("/waiters/:username", async function(req,res){
-    const waiterName = req.params.username
-
-    res.render("admini")
-
-})
 app.post("/days",route.adminPageFunctionality)
 app.get("/days",route.adminPage)
-
+app.post("/admin",route.adminPageRemove)
 app.post("/reset", route.reset)
 
 const PORT = process.env.PORT || 3022

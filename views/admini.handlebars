@@ -9,107 +9,154 @@
 </head>
 <body>
     <div class="container">
-        <h1>Waiters available for work</h1>
-        <table>
-            <tr>
-                <th>Days</th>
-                <th>Name of waiter</th>
-            </tr>
-            <tr>
-                <td class="day-row">Monday</td>
-                {{#each mon}}
-                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
-                {{/each}} 
-            </tr>
-            <tr>
-                <td class="day-row">Tuesday</td>
-                {{#each tue}}
-                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
-                {{/each}} 
-            </tr>
-            <tr>
-                <td class="day-row">Wednesday</td>
-                {{#each wed}} 
-                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
-                {{/each}} 
-            </tr>
-            <tr>
-                <td class="day-row">Thursday</td>
-                {{#each thur}} 
-                <td>
-                    <li class="waiter-count">{{this.waiters_name}}</li>
-                </td>
-                {{/each}} 
-            </tr>
-            <tr>
-                <td class="day-row">Friday</td>
-                {{#each fri}}
-                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
-                {{/each}} 
-            </tr>
-            <tr>
-                <td class="day-row">Saturday</td>
-                {{#each sat}}
-                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
-                {{/each}} 
-            </tr>
-            <tr>
-                <td class="day-row">Sunday</td>
-                {{#each sun}}
-                <td><li class="waiter-count">{{this.waiters_name}}</li></td>
-                {{/each}}
-            </tr>
-        </table>
+        <h1>Coffee Shop</h1>
+        <div class="table">
+            <h3>Waiters available for work</h3>
+            <table>
+                <tr>
+                    <th>Days</th>
+                    <th>Name of waiter</th>
+                </tr>
+                <tr class="day-row">
+                    <td class="weekday">Monday</td>
+                    {{#each mon}}
+                    <td><li class="waiter-count">{{this.waiters_name}}<br></li>
+                    
+                    {{/each}} 
+                </tr>
+                <tr class="day-row">
+                    <td class="weekday">Tuesday</td>
+                    {{#each tue}}
+                    <td><li class="waiter-count">{{this.waiters_name}}</li>
+                    {{/each}} 
+                </tr>
+                <tr class="day-row">
+                    <td class="weekday">Wednesday</td>
+                    {{#each wed}} 
+                    <td><li class="waiter-count">{{this.waiters_name}}</li></td>
+                    {{/each}} 
+                </tr>
+                <tr class="day-row">
+                    <td class="weekday">Thursday</td>
+                    {{#each thur}} 
+                    <td >
+                        <li class="waiter-count">{{this.waiters_name}}</li>
+                    </td>
+                    {{/each}} 
+                </tr>
+                <tr class="day-row">
+                    <td class="weekday">Friday</td>
+                    {{#each fri}}
+                    <td><li class="waiter-count">{{this.waiters_name}}</li></td>
+                    {{/each}} 
+                </tr>
+                <tr class="day-row">
+                    <td class="weekday">Saturday</td>
+                    {{#each sat}}
+                    <td><li class="waiter-count">{{this.waiters_name}}</li></td>
+                    {{/each}} 
+                </tr>
+                <tr class="day-row">
+                    <td class="weekday">Sunday</td>
+                    {{#each sun}}
+                    <td><p class="waiter-count">{{this.waiters_name}}</p></td>
+                    {{/each}}
+                </tr>
+            </table>
+        </div>
         <span class="adminErrors">
             {{messages.error1}}
         </span>
         <form action="/reset" method="post">
             <button type="submit">Reset data</button>
         </form>
-        <div class="">
-            <h3>Reschedule waiter</h3>
-            <span class="adminError">
-                {{messages.error2}}
-                </span>
-                <span class="adminSucess">
-                {{messages.success2}}
-                </span>
-            <form class='adminForm' action="/days" method="post">
-                <h4>Select a waiter name</h4>
-                <label for="waiterNames">Waiter name:</label>
-                <select class="waiterName" name="waiterNames">
-                    <option value="">Select waiter</option>
-                    {{#each names}}
-                    <option value="{{this.waiters_name}}">{{this.waiters_name}}</option>
-                    {{/each}}
-                </select>
-                <h4>Select Days</h4>
-                
-                <div class="days">
-                    <input type="checkbox" name="daysOfWeek" value="Monday">
-                    <label for="">Monday</label><br>
-                    <input type="checkbox" name="daysOfWeek" value="Tuesday">
-                    <label for="">Tuesday</label><br>
-                    <input type="checkbox" name="daysOfWeek" value="Wednesday">
-                    <label for="">Wednesday</label><br>
-                    <input type="checkbox" name="daysOfWeek" value="Thursday">
-                    <label for="">Thursday</label><br>
-                    <input type="checkbox" name="daysOfWeek" value="Friday">
-                    <label for="">Friday</label><br>
-                    <input type="checkbox" name="daysOfWeek" value="Saturday">
-                    <label for="">Saturday</label><br>
-                    <input type="checkbox" name="daysOfWeek" value="Sunday">
-                    <label for="">Sunday</label><br>
-                </div>
-                <button type="submit">Reschedule</button>
-            </form>
+        <div class="admin">
+            <div class="reschedule">
+                <h3>Reschedule waiter</h3>
+                <span class="adminError">
+                    {{messages.error2}}
+                    </span>
+                    <span class="adminSucess">
+                    {{messages.success2}}
+                    </span>
+                <form class='adminForm' action="/days" method="post">
+                    <h4>Select a waiter name</h4>
+                    <label for="waiterNames">Waiter name:</label>
+                    <select class="waiterName" name="waiterNames">
+                        <option value="">Select waiter</option>
+                        {{#each names}}
+                        <option value="{{this.waiters_name}}">{{this.waiters_name}}</option>
+                        {{/each}}
+                    </select>
+                    <h4>Select Days</h4>
+                    
+                    <div class="days">
+                        <input type="checkbox" name="daysOfWeek" value="Monday">
+                        <label for="">Monday</label><br>
+                        <input type="checkbox" name="daysOfWeek" value="Tuesday">
+                        <label for="">Tuesday</label><br>
+                        <input type="checkbox" name="daysOfWeek" value="Wednesday">
+                        <label for="">Wednesday</label><br>
+                        <input type="checkbox" name="daysOfWeek" value="Thursday">
+                        <label for="">Thursday</label><br>
+                        <input type="checkbox" name="daysOfWeek" value="Friday">
+                        <label for="">Friday</label><br>
+                        <input type="checkbox" name="daysOfWeek" value="Saturday">
+                        <label for="">Saturday</label><br>
+                        <input type="checkbox" name="daysOfWeek" value="Sunday">
+                        <label for="">Sunday</label><br>
+                    </div>
+                    <button type="submit">Reschedule</button>
+                </form>
+            </div>
+            <div class="remove">
+                <h3>Remove waiter</h3>
+                <span class="adminError2">
+                    {{messages.error3}}
+                    </span>
+                    <span class="adminSucess2">
+                    {{messages.success3}}
+                    </span>
+                <form class='adminForm2' action="/admin" method="post">
+                    <h4>Select a waiter name</h4>
+                    <label for="waiterNames">Waiter name:</label>
+                    <select class="waiterName" name="waitersNames">
+                        <option value="">Select Waiter</option>
+                        {{#each names}}
+                        <option value={{this.waiters_name}}>{{this.waiters_name}}</option>
+                        {{/each}}
+                    </select>
+                    <h4>Select Days</h4>
+                    
+                    <div class="dayz">
+                        <label for="Days">Day:</label>
+                        <select class="Days" name="days">
+                            <option value="">Select Day</option>
+                            
+                            <option value=""></option>
+                            <option value="All">All days</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                            
+                        </select>
+                    </div>
+                    <button type="submit">Remove</button>
+                </form>
+            </div>
         </div>
     </div>
     
     <script>
         const messageAd = document.querySelector('.adminErrors');
         const messageAd2 = document.querySelector('.adminError');
-          const messageAd3 = document.querySelector('.adminSucess'); 
+        const messageAd3 = document.querySelector('.adminSucess'); 
+        const messageAd4 = document.querySelector('.adminError2');
+        const messageAd5 = document.querySelector('.adminSucess2'); 
 
         if (messageAd.innerHTML !== '') {
             setTimeout(function () { 
@@ -128,23 +175,46 @@
             }, 3500);
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
+         if (messageAd4.innerHTML !== '') {
+            setTimeout(function () { 
+                messageAd4.innerHTML = ''; 
+            }, 3500);
+        }
+
+         if (messageAd5.innerHTML !== '') {
+            setTimeout(function () { 
+                messageAd5.innerHTML = ''; 
+            }, 3500);
+        }
+        
+      document.addEventListener("DOMContentLoaded", function () {
             // Get all elements with class "day-row"
             const dayRows = document.querySelectorAll('.day-row');
-
+            const dayForWork = document.querySelectorAll('.weekday')
+          
             // Loop through each "day-row" element
             dayRows.forEach(dayRow => {
                 const waiterCounts = dayRow.querySelectorAll('.waiter-count');
-                console.log(waiterCounts.length);
-
+                
                 // Check if the number of "waiter-count" elements is greater than 3
                 if (waiterCounts.length === 3) {
                     // Add the "green" class to turn the "day-row" green
-                    dayRow.style.backgroundColor = 'green';
+                    //dayRow.style.backgroundColor = 'green';
                     dayRow.classList.add('green');
+                    
+                }
+                else if (waiterCounts.length > 3){
+                    dayRow.classList.add('red')
+                }
+                else if(waiterCounts.length === 0){
+                    dayRow.classList.add('normal')
+                }
+                else {
+                    dayRow.classList.add('grey')
                 }
             });
         });
+
     </script>
 </body>
 </html>

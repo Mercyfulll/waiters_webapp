@@ -29,6 +29,13 @@ export default function queries(db){
         return await db.manyOrNone(`SELECT DISTINCT waiters_name FROM schedule`)
     }
 
+    async function removeNameForDay(name,id){
+        await db.none('DELETE FROM schedule WHERE waiters_name = $1 AND days_id= $2',[name,id])
+    }
+
+    async function removeWaiterName(name){
+        await db.none(`DELETE FROM schedule WHERE waiters_name = $1`,[name])
+    }
     return{
         checkName,
         addName,
@@ -36,6 +43,8 @@ export default function queries(db){
         waitersSchedule,
         getDayWorkersChose,
         getWaitersNames,
+        removeWaiterName,
+        removeNameForDay,
         reset
     }
 }

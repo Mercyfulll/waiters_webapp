@@ -1,13 +1,14 @@
-/* *{
+ /* *{
     outline:1px solid pink ;
-} */
+}  */
 .container{
     text-align: center;   
     margin: auto;
-    margin-left: 10em;
-    margin-right: 10em;
+    margin-left: 5em;
+    margin-right: 5em;
     margin-top: 4em;
-    background-color: #9a8873;
+    margin-bottom: 0.5em;
+    background-color: #a9927d;
     border-radius: 12px;
 }
 
@@ -58,12 +59,11 @@ input[type='checkbox']:checked {
 }
 
 .days{
-    padding: 0.7em;
     display: inline-flex;
+    
 }
 .dayz{
-    padding: 0.2em;
-    display: inline-flex;
+    width: 100%;
 }
 
 table {
@@ -84,16 +84,16 @@ table {
     margin-right: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
-  .adminSucess{
+  .adminSucess,.adminSucess2{
     margin-bottom: 1em;
     font-size: large;
-    color:chartreuse;
+    color:rgb(81, 129, 33);
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
-  .error,.errors,.adminError{
+  .error,.errors,.adminError,.adminError2{
         font-size: large;
         color:crimson;
         text-align: center;
@@ -117,9 +117,7 @@ table {
         list-style: none;
     }
     select {
-        
         outline: 0;
-        background: #575404;
         width: 17%;
         height: 100%;
         color: black;
@@ -129,14 +127,35 @@ table {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size: medium;
     }
+    .admin{
+        display: flex;
+        margin-bottom: 0.5em;
+        
+    }
+    .reschedule{
+        width: 53%;
+        margin-right: 1em;
+        margin-bottom: 1.5em;
+        background-color: #d9d9d9;
+        border-radius: 20px;
+    }
+    .remove{
+        width: 46%;
+        margin-bottom: 1.5em;
+        background-color: #3C6E71;
+        border-radius: 20px;
+    }
     .grey{
-        color: lightslategrey;
+        background-color: lightslategrey;
     }
     .red{
-        color: crimson;
+        background-color: #904353;
     }
     .green{
-        background-color: #004600;
-        color: chartreuse;
+        /* background-color: #004600; */
+        background: #575404;
+    }
+    .normal{
+        background-color: #a9927d;
     }
 

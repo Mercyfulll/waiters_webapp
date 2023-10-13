@@ -77,7 +77,7 @@ export default function routes(data, waiter){
 
     async function adminPage(req,res){
         const names = await data.getWaitersNames()
-        console.log(names)
+       
         const mon = await data.getDayWorkersChose('Monday')
         const tue = await data.getDayWorkersChose('Tuesday')
         const wed = await data.getDayWorkersChose('Wednesday')
@@ -94,8 +94,7 @@ export default function routes(data, waiter){
         try {
             const nameOfWaiter = req.body.waiterNames
             const weekdays = req.body.daysOfWeek
-            console.log(nameOfWaiter)
-            console.log(weekdays)
+           
 
             if(typeof weekdays === 'string' ){
                 req.flash('error2','Select minimum of 4 days')
@@ -121,6 +120,33 @@ export default function routes(data, waiter){
         res.redirect("/days")
     }
 
+    async function adminPageRemove(req,res){
+        try {
+            const waiterName = req.body.waitersNames
+            const dayToDelete = req.body.days
+
+            if(waiterName && dayToDelete !== 'All' && dayToDelete){
+                const id = waiter.getDayId(dayToDelete) 
+                await data.removeNameForDay(waiterName,id)
+                req.flash('success3','Name and day removed')
+            }
+            else if(waiterName && dayToDelete === 'All'){
+                await data.removeWaiterName(waiterName)
+                req.flash('success3','Person removed from schedule')
+            }
+            else if(waiterName && dayToDelete === ''){
+                req.flash('error3','Choose a day to remove')
+            }
+            else if(waiterName =='' && dayToDelete === ''){
+                req.flash('error3','Choose waiter and day')
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+        res.redirect("/days")
+    }
+
     async function reset(req,res){
         try {
             await data.reset()
@@ -135,6 +161,7 @@ export default function routes(data, waiter){
         adminPage,
         waiterPage,
         adminPageFunctionality,
+        adminPageRemove,
         reset
     }
 }
