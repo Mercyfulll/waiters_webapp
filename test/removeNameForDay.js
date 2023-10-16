@@ -46,6 +46,5 @@ describe('The addName query test', function(){
                 }
               ]
               , await data. waitersSchedule('Jerry'))
-           
     })
 })

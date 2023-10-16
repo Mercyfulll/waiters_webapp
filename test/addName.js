@@ -13,7 +13,6 @@ const data = queries(db);
 
 describe('The addName query test', function(){
     
-
     beforeEach(async function(){
        
         // clean the tables before each test run

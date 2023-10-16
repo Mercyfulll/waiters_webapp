@@ -90,7 +90,8 @@ export default function routes(data, waiter){
             console.log(dayToDelete)
 
             if(waiterName && dayToDelete && dayToDelete !== 'All'){
-                const id = waiter.getDayId(dayToDelete) 
+                const idData = await data.getDayId(dayToDelete)
+                const id = idData.id
                 await data.removeNameForDay(waiterName,id)
                 req.flash('success3','Name and day removed')
             }

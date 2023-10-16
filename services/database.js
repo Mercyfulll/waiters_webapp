@@ -33,6 +33,9 @@ export default function queries(db){
         await db.none(`DELETE FROM schedule WHERE waiters_name = $1`,[name])
     }
 
+    async function getDayId(day){
+        return db.oneOrNone(`SELECT id FROM workdays WHERE daysofweek = $1`,[day])
+    }
     return{
         checkName,
         addName,
@@ -41,6 +44,7 @@ export default function queries(db){
         getWaitersNames,
         removeWaiterName,
         removeNameForDay,
+        getDayId,
         reset
     }
 }

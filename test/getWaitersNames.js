@@ -12,7 +12,6 @@ const db = pgp(connectionString)
 const data = queries(db);
 
 describe('The getWaitersNames query test', function(){
-    
 
     beforeEach(async function(){
        
@@ -28,7 +27,7 @@ describe('The getWaitersNames query test', function(){
             await data.addName('Finn', day)
         }
 
-        let ydays = ['Monday','Saturday','Friday','Thursday']
+        let ydays = ['Monday','Saturday','Friday','Tuesday']
         
         for (const day of ydays ){
             await data.addName('Kade', day)

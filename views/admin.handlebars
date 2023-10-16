@@ -20,13 +20,14 @@
                 </tr>
                 {{/each}}
             </table>
+       
+            <span class="adminErrors">
+                {{messages.error1}}
+            </span>
+            <form action="/reset" method="post">
+                <button type="submit">Reset data</button>
+            </form>
         </div>
-        <span class="adminErrors">
-            {{messages.error1}}
-        </span>
-        <form action="/reset" method="post">
-            <button type="submit">Reset data</button>
-        </form>
         <div class="admin">
             <div class="reschedule">
                 <h3>Reschedule waiter</h3>
@@ -46,7 +47,6 @@
                         {{/each}}
                     </select>
                     <h4>Select Days</h4>
-                    
                     <div class="days">
                         <input type="checkbox" name="daysOfWeek" value="Monday">
                         <label for="">Monday</label><br>
