@@ -34,8 +34,10 @@
     "express-handlebars": "^7.1.2",
     "express-session": "^1.17.3",
     "flash": "^1.1.0",
-    "mocha": "^10.2.0",
     "pg-promise": "^11.5.4",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }
