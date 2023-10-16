@@ -11,6 +11,22 @@
     background-color: #a9927d;
     border-radius: 12px;
 }
+ /* header{
+    display: inline;
+    height: 60px;   
+}
+.header img {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background: #555;
+  }
+  
+  .header h1 {
+    position: relative;
+    top: 18px;
+    left: 10px;
+  }   */
 
 h1{
     padding-top: 0.4em;

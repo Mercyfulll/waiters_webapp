@@ -20,10 +20,6 @@ export default function queries(db){
         return await db.manyOrNone(`SELECT schedule.waiters_name, workdays.daysofweek FROM workdays JOIN schedule ON schedule.days_id = workdays.id`)
     } 
 
-    async function getDayWorkersChose(day){
-        return await db.manyOrNone(`SELECT schedule.waiters_name, workdays.daysofweek FROM workdays JOIN
-        schedule ON schedule.days_id = workdays.id WHERE daysofweek = $1`,[day])
-    }
 
     async function getWaitersNames(){
         return await db.manyOrNone(`SELECT DISTINCT waiters_name FROM schedule`)
@@ -36,12 +32,12 @@ export default function queries(db){
     async function removeWaiterName(name){
         await db.none(`DELETE FROM schedule WHERE waiters_name = $1`,[name])
     }
+
     return{
         checkName,
         addName,
         deleteName,
         waitersSchedule,
-        getDayWorkersChose,
         getWaitersNames,
         removeWaiterName,
         removeNameForDay,

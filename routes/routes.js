@@ -43,51 +43,13 @@ export default function routes(data, waiter){
         res.redirect('/');
     } 
 
-    // async function waiterPage(req, res) {
-    //     try {
-    //       const waiters_Name = waiter.nameValidation(req.body.uName);
-    //       const daysOfTheWeek = req.body.daysOfWeek;
-    //       const checkNameExists = await data.checkDuplicates(waiters_Name);
-      
-    //       if (!waiters_Name || !daysOfTheWeek) {
-    //         req.flash('error', 'Please enter a name and select days');
-    //       } else if (!waiters_Name) {
-    //         req.flash('error', 'Enter a name of a staff member');
-    //       } else if (!Array.isArray(daysOfTheWeek) || daysOfTheWeek.length < 4) {
-    //         req.flash('error', 'Select a minimum of 4 days');
-    //       } else {
-    //         if (checkNameExists.length > 0) {
-    //           await data.deleteName(waiters_Name);
-    //         }
-      
-    //         for (const dayOfWeek of daysOfTheWeek) {
-    //           await data.addName(waiters_Name, dayOfWeek);
-    //         }
-    //         req.flash('success', 'Schedule updated successfully');
-    //       }
-    //     } catch (err) {
-    //       console.error(err);
-    //       req.flash('error', 'An error occurred while processing your request');
-    //     } finally {
-    //       res.redirect('/'); // Redirect the user, adjust the path as needed
-    //     }
-    //   }
-      
-
-
     async function adminPage(req,res){
         const names = await data.getWaitersNames()
-       
-        const mon = await data.getDayWorkersChose('Monday')
-        const tue = await data.getDayWorkersChose('Tuesday')
-        const wed = await data.getDayWorkersChose('Wednesday')
-        const thur = await data.getDayWorkersChose('Thursday')
-        const fri =  await data.getDayWorkersChose('Friday')
-        const sat = await data.getDayWorkersChose('Saturday')
-        const sun = await data.getDayWorkersChose('Sunday')
+        const schedule = await data.waitersSchedule();
+        const mergedData = waiter.mergeObject(await data.waitersSchedule())
+     
     
-    
-        res.render("admini", {names, mon,tue,wed,thur,fri,sat,sun})
+        res.render("admin", {names,schedule, mergedData})
     }
 
     async function adminPageFunctionality(req,res){
@@ -124,8 +86,10 @@ export default function routes(data, waiter){
         try {
             const waiterName = req.body.waitersNames
             const dayToDelete = req.body.days
+            console.log(waiterName)
+            console.log(dayToDelete)
 
-            if(waiterName && dayToDelete !== 'All' && dayToDelete){
+            if(waiterName && dayToDelete && dayToDelete !== 'All'){
                 const id = waiter.getDayId(dayToDelete) 
                 await data.removeNameForDay(waiterName,id)
                 req.flash('success3','Name and day removed')
