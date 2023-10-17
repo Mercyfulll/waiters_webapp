@@ -48,6 +48,7 @@ export default function waiters(){
     
         return transformedData;
     }
+
     return{
         nameValidation,
         validationErrors,

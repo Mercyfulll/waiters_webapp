@@ -65,7 +65,8 @@ describe('The waitersSchedule query test', function(){
             daysofweek: 'Sunday',
             waiters_name: 'Harry'
           }
-        ],await data.waitersSchedule())
+        ]
+        ,await data.waitersSchedule())
 
     })
 })

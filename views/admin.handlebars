@@ -148,13 +148,6 @@
         const dayName = dayRow.querySelector('.weekday').textContent;
         const waiterNames = dayRow.querySelector('.waiter-count').textContent.split(',').map(name => name.trim());
         const waiterCount = waiterNames.length
-        console.log(waiterCount)
-        console.log(waiterNames)
-        // Update the DOM with the waiter count
-       // const countElement = document.createElement('span');
-        //countElement.textContent = `(${waiterCount} waiters)`;
-        //countElement.classList.add('waiter-count-text');
-        //dayRow.appendChild(countElement);
 
         // Check if there are exactly 3 waiters and add green color
         if (waiterCount === 3) {

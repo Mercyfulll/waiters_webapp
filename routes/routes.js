@@ -4,10 +4,19 @@ export default function routes(data, waiter){
         try{
             const waiters_Name = req.body.uName
             const daysOfTheWeek = req.body.daysOfWeek; 
+            const specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/
+            const numbersVal =  /^[0-9]/
+            const alpha = specialCharacters.test(waiters_Name)
+            const numb = numbersVal.test(waiters_Name)
             const checkNameExists = await data.checkName(waiter.nameValidation(waiters_Name))
             
-
-                if(daysOfTheWeek === undefined && waiters_Name === ''){
+                if(alpha){
+                    req.flash('error','Enter a name without special characters')
+                }
+                else if(numb){
+                    req.flash('error','Enter a name without numeric values')
+                }
+                else if(daysOfTheWeek === undefined && waiters_Name === ''){
                     req.flash('error','Empty entries, please enter a name and select days')
                 }
                 else if(daysOfTheWeek !== undefined && !waiters_Name ){
@@ -40,7 +49,7 @@ export default function routes(data, waiter){
             console.log(err)
         }
         // Redirect or respond as needed
-        res.redirect('/');
+        res.render("admin", {names,schedule, mergedData});
     } 
 
     async function adminPage(req,res){
@@ -49,7 +58,7 @@ export default function routes(data, waiter){
         const mergedData = waiter.mergeObject(await data.waitersSchedule())
      
     
-        res.render("admin", {names,schedule, mergedData})
+        res.render("admin", {name:waiter.nameValidation(waiters_Name)})
     }
 
     async function adminPageFunctionality(req,res){

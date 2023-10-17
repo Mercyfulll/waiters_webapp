@@ -28,7 +28,8 @@ describe('The addName query test', function(){
             await data.addName('Jerry', day)
         }
 
-        const id = waiter.getDayId('Thursday')
+        const idData = await data.getDayId('Thursday')
+        const id = idData.id
         await data.removeNameForDay('Jerry',id) 
 
             assert.deepEqual([
@@ -45,6 +46,6 @@ describe('The addName query test', function(){
                   waiters_name: 'Jerry'
                 }
               ]
-              , await data. waitersSchedule('Jerry'))
+              , await data.waitersSchedule('Jerry'))
     })
 })
