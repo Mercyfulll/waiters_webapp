@@ -49,7 +49,7 @@ export default function routes(data, waiter){
             console.log(err)
         }
         // Redirect or respond as needed
-        res.render("admin", {names,schedule, mergedData});
+        res.redirect('/');
     } 
 
     async function adminPage(req,res){
@@ -58,7 +58,7 @@ export default function routes(data, waiter){
         const mergedData = waiter.mergeObject(await data.waitersSchedule())
      
     
-        res.redirect("/days")
+        res.render("admin", {names,schedule, mergedData})
     }
 
     async function adminPageFunctionality(req,res){
