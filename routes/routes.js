@@ -58,7 +58,7 @@ export default function routes(data, waiter){
         const mergedData = waiter.mergeObject(await data.waitersSchedule())
      
     
-        res.render("admin", {name:waiter.nameValidation(waiters_Name)})
+        res.redirect("/days")
     }
 
     async function adminPageFunctionality(req,res){
