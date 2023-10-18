@@ -70,7 +70,10 @@
     .dayz{
         width: 100%;
     }
-    
+    .daysOf{
+        margin-top: 0.8em;
+        display: inline-flex;
+    }
     table {
         border-collapse: collapse;
         width: 100%;

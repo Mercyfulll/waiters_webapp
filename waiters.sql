@@ -9,11 +9,6 @@ CREATE TABLE schedule(
     days_id INT REFERENCES workdays (id) 
 );
 
-CREATE TABLE waiters(
-    id SERIAL PRIMARY KEY,);
-
-
-
 INSERT INTO workdays (daysOfWeek) VALUES 
     ('Monday'),
     ('Tuesday'),

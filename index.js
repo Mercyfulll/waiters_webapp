@@ -1,4 +1,5 @@
 import express from "express";
+import exphbs from 'express-handlebars';
 import {engine} from "express-handlebars";
 import bodyParser from "body-parser";
 import pgPromise from "pg-promise";
@@ -12,6 +13,7 @@ import routes from "./routes/routes.js";
 var app = express();
 var pgp = pgPromise();
 var waiter = waiters();
+var ehbs = exphbs.create();
 
 var connectionString = process.env.DATABASE_URL || 'postgres://ncmlcbqz:SXVviMgE6Vt3-ssTYfVB6Wsj42Tw4t0N@trumpet.db.elephantsql.com/ncmlcbqz?ssl=true'
 
@@ -40,10 +42,25 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get("/", async function(req,res){
-    res.render("index")
-})
+// ehbs.handlebars.registerHelper('includes', function(arr, item) {
+//     //Map the array of objects to an array of days
+//     const days = arr.map(a => a.daysofweek);
+//     //Check if the item is included in the array of days
+//     return days.includes(item);
+// });
 
+// ehbs.handlebars.registerHelper('includes', function(arr, item) {
+//     if (Array.isArray(arr)) {
+//         // Use Array.some() to check if the item exists in the array of objects
+//         return arr.some(obj => obj.day === item);
+//     }
+//     return false; // Return false if arr is not an array
+// });
+
+
+
+app.get("/",route.home)
+// app.post("/",route.checkbox)
 app.post("/",route.waiterPage)
 app.post("/days",route.adminPageFunctionality)
 app.get("/days",route.adminPage)

@@ -1,14 +1,36 @@
 export default function routes(data, waiter){
+    
+    async function home(req,res){
+        
+        let checkboxState = false
+       
+        res.render("index",  { checkboxState })
+    }
+
+    // async function home(req, res) {
+    //     if (req.session.checkboxState === undefined) {
+    //       req.session.checkboxState = false; // Set to false initially
+    //     }
+      
+    //     res.render("index", { checkboxState: req.session.checkboxState });
+    //   }
+
+    //   async function checkbox(req,res){
+    //         req.session.checkboxState = !req.session.checkboxState; // Toggle the state
+    //         res.redirect("/");
+    //       };
+          
+      
 
     async function waiterPage(req,res){
         try{
             const waiters_Name = req.body.uName
             const daysOfTheWeek = req.body.daysOfWeek; 
-            const specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/
-            const numbersVal =  /^[0-9]/
+            const specialCharacters = /\W/
+            const numbersVal = /\d/
             const alpha = specialCharacters.test(waiters_Name)
             const numb = numbersVal.test(waiters_Name)
-            const checkNameExists = await data.checkName(waiter.nameValidation(waiters_Name))
+            const checkNameExists = await data.checkName(waiter.nameValidation(waiters_Name))           
             
                 if(alpha){
                     req.flash('error','Enter a name without special characters')
@@ -43,20 +65,24 @@ export default function routes(data, waiter){
                         await data.addName(waiter.nameValidation(waiters_Name),dayOfWeek)
                     }
                     req.flash('success','You updated the schedule successfully');
-                }  
-        }
+                } 
+        }       
         catch(err){
             console.log(err)
         }
+        
         // Redirect or respond as needed
-        res.redirect('/');
+         res.redirect("/");
     } 
 
     async function adminPage(req,res){
+       
         const names = await data.getWaitersNames()
         const schedule = await data.waitersSchedule();
         const mergedData = waiter.mergeObject(await data.waitersSchedule())
-     
+        console.log(schedule)
+
+        
     
         res.render("admin", {names,schedule, mergedData})
     }
@@ -132,10 +158,12 @@ export default function routes(data, waiter){
         res.redirect('/days')    
     }
     return{
+        home,
         adminPage,
         waiterPage,
         adminPageFunctionality,
         adminPageRemove,
+        // checkbox,
         reset
     }
 }

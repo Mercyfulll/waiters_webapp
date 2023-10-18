@@ -5,26 +5,29 @@
     <span class="error">
             {{messages.error}}
     </span>
+        
     <form action="/" method="post">
+            
         <div class="waiters">
             <label>Name : </label><input type="text" class="uName" name="uName" value={{name}}><br>
             <span class="errors">
-                {{messages.error1}}
-            </span>
+                    {{messages.error1}}
+        </span>
+        <br>
             <div class="daysOf">
-                <input type="checkbox" name="daysOfWeek" value="Monday" class="dayz">
+                <input type="checkbox" name="daysOfWeek" value="Monday" class="dayz"   {{#if checkboxState}}checked{{/if}} >
                 <label for="">Monday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Tuesday" class="dayz">
+                <input type="checkbox" name="daysOfWeek" value="Tuesday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
                 <label for="">Tuesday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Wednesday" class="dayz">
+                <input type="checkbox" name="daysOfWeek" value="Wednesday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
                 <label for="">Wednesday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Thursday" class="dayz">
+                <input type="checkbox" name="daysOfWeek" value="Thursday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
                 <label for="">Thursday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Friday" class="dayz">
+                <input type="checkbox" name="daysOfWeek" value="Friday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
                 <label for="">Friday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Saturday" class="dayz">
+                <input type="checkbox" name="daysOfWeek" value="Saturday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
                 <label for="">Saturday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Sunday" class="dayz">
+                <input type="checkbox" name="daysOfWeek" value="Sunday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
                 <label for="">Sunday</label><br>
             </div>
             <br>
@@ -36,4 +39,27 @@
             <button type="submit">Schedule</button>
         </div>
     </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const checkboxes = document.querySelectorAll('.dayz');
+            const selectedDays = new Set(); // To store selected days
+
+                checkboxes.forEach(checkbox => {
+                    // Add an event listener for the change event
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    selectedDays.add(this.value);
+                } else {
+                    selectedDays.delete(this.value);
+                }
+            });
+
+            // Check the checkbox if it's in the selectedDays set
+            if (selectedDays.has(checkbox.value)) {
+                checkbox.checked = true;
+            }
+    });
+});
+
+    </script>
 </div>
