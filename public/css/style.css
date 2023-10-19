@@ -99,7 +99,7 @@
       .adminSucess,.adminSucess2{
         margin-bottom: 1em;
         font-size: large;
-        color:rgb(81, 129, 33);
+        color:rgb(81, 140, 3);
         text-align: center;
         margin-left: auto;
         margin-right: auto;
@@ -152,18 +152,25 @@
             background-color: #3C6E71;
             border-radius: 20px;
         }
-        .grey{
+        .grey,.lightgrey{
             background-color: lightslategrey;
         }
-        .red{
+        .red,.cordovan{
             background-color: #904353;
         }
-        .green{
-            /* background-color: #004600; */
+        .green,.bronze{
             background: #575404;
         }
         .normal{
             background-color: #a9927d;
+        }
+        .bronze,.lightgrey,.cordovan{
+            width: 25%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-left: 0.5em;
+            padding: 0.2em;
+            border-radius: 25px;
         }
 
 @media(max-width:720px){

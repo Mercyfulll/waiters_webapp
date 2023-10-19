@@ -1,27 +1,9 @@
 export default function routes(data, waiter){
     
     async function home(req,res){
-        
-        let checkboxState = false
-       
-        res.render("index",  { checkboxState })
+        res.render("index")
     }
-
-    // async function home(req, res) {
-    //     if (req.session.checkboxState === undefined) {
-    //       req.session.checkboxState = false; // Set to false initially
-    //     }
-      
-    //     res.render("index", { checkboxState: req.session.checkboxState });
-    //   }
-
-    //   async function checkbox(req,res){
-    //         req.session.checkboxState = !req.session.checkboxState; // Toggle the state
-    //         res.redirect("/");
-    //       };
-          
-      
-
+                
     async function waiterPage(req,res){
         try{
             const waiters_Name = req.body.uName
@@ -47,10 +29,10 @@ export default function routes(data, waiter){
                 else if(daysOfTheWeek === undefined && waiters_Name){
                     req.flash('error','Please select days for work')
                 }
-                else if(waiters_Name!=='' && typeof daysOfTheWeek === 'string' || daysOfTheWeek.length <= 3){
-                    req.flash('error1','Select minimum of 4 days')
+                else if(waiters_Name!=='' && typeof daysOfTheWeek === 'string' || daysOfTheWeek.length <= 1){
+                    req.flash('error1','Select minimum of 2 days')
                 }
-                else if(waiters_Name!=='' && daysOfTheWeek.length > 3 && checkNameExists.length === 0){
+                else if(waiters_Name!=='' && daysOfTheWeek.length > 1 && checkNameExists.length === 0){
                     
                     // Insert the days into the schedule table and link to workdays table
                     for (const dayOfWeek of daysOfTheWeek) {
@@ -58,7 +40,7 @@ export default function routes(data, waiter){
                     }
                     req.flash('success','Name and days added to schedule successfully')
                 }
-                else if(checkNameExists.length > 0 && daysOfTheWeek.length > 3 && waiters_Name!=='') {
+                else if(checkNameExists.length > 0 && daysOfTheWeek.length > 1 && waiters_Name!=='') {
                     await data.deleteName(waiter.nameValidation(waiters_Name))
                     
                     for (const dayOfWeek of daysOfTheWeek) {
@@ -94,7 +76,7 @@ export default function routes(data, waiter){
            
 
             if(typeof weekdays === 'string' ){
-                req.flash('error2','Select minimum of 4 days')
+                req.flash('error2','Select minimum of 2 days')
             }
             else if(weekdays === undefined){
                 req.flash('error2','No days selected')
@@ -102,7 +84,7 @@ export default function routes(data, waiter){
             else if(nameOfWaiter === ''){
                 req.flash('error2','Select waiters name')
             }
-            else if(weekdays.length > 3){
+            else if(weekdays.length > 1){
                 await data.deleteName(nameOfWaiter)
             // Insert the days into the schedule table and link to workdays table
             for (const dayOfWeek of weekdays) {
@@ -163,7 +145,6 @@ export default function routes(data, waiter){
         waiterPage,
         adminPageFunctionality,
         adminPageRemove,
-        // checkbox,
         reset
     }
 }

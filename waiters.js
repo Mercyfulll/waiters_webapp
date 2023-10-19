@@ -14,20 +14,6 @@ export default function waiters(){
             return reg
     }
 
-    function validationErrors(name){
-
-            var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/
-            var num =  /^[0-9]/
-            
-            var alpha = format.test(name)
-            var numb = num.test(name)
-            
-        if(alpha || numb){
-            msg = "Invalid input, alphabets only"          
-        }
-            return msg
-    }
-
     function mergeObject(data) {
         const mergedData = {};
 
@@ -48,32 +34,10 @@ export default function waiters(){
     
         return transformedData;
     }
-    // function checkbox(daysFromData, selectedDays) {
-    //     const checkedStatus = {};
-      
-    //     // Initialize the checkedStatus object to false for all days
-    //     daysFromData.forEach(day => {
-    //       checkedStatus[day.daysofweek] = false;
-    //     });
-      
-    //     // Set the checked status to true for the selected days
-    //     selectedDays.forEach(day => {
-    //       checkedStatus[day.daysofweek] = true;
-    //     });
-      
-    //     // Create the final output array
-    //     const output = daysFromData.map(day => ({
-    //       day_of_the_week: day.daysofweek,
-    //       checked: checkedStatus[day.daysofweek]
-    //     }));
-      
-    //     return output;
-    //   }
+    
 
     return{
         nameValidation,
-        validationErrors,
-        //checkbox,
         mergeObject
     }
 }
