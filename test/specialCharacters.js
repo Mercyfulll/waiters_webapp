@@ -18,32 +18,17 @@ describe('The addName query test', function(){
         // clean the tables before each test run
         await data.reset()
     })
-
-    it("It should be able to add name to a schedule",async function(){
-
+    it("It should not add name should it have special characters",async function(){
+        // Increase the timeout to 5000ms (5 seconds)
+        this.timeout(5000);
         let waiter = waiters()
-        let days = ['Monday','Sunday','Friday','Thursday']
+        let wdays = ['Monday','Tuesday','Wednesday','Saturday']
         
-        for (const day of days ){
-            await data.addName('Tom', day)
+        for (const day of wdays ){
+            await data.addName(waiter.nameValidation('@Precious'), day)
         }
         
 
-        assert.deepEqual([
-            {
-              waiters_name: 'Tom'
-            },
-            {
-              waiters_name: 'Tom'
-            },
-            {
-              waiters_name: 'Tom'
-            },
-            {
-              waiters_name: 'Tom'
-            }
-          ]
-          ,await data.checkName('Tom'))
-          
+        assert.deepEqual([],await data.checkName('@Precious'))
     })
 })

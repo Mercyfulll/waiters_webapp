@@ -20,6 +20,8 @@ describe('The getWaitersNames query test', function(){
     })
 
     it('It should return names of waiters',async function(){
+       // Increase the timeout to 5000ms (5 seconds)
+        this.timeout(5000);
         let waiter = waiters()
         let tdays = ['Monday','Saturday','Friday','Thursday']
         

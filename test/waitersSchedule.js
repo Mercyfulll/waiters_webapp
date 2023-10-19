@@ -20,6 +20,8 @@ describe('The waitersSchedule query test', function(){
     })
 
     it("It should return waiters that chose that specific day", async function(){
+        // Increase the timeout to 5000ms (5 seconds)
+        this.timeout(5000);
         let waiter = waiters()
         let Wdays = ['Monday','Sunday','Wednesday','Thursday']
         

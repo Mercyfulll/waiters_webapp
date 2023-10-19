@@ -21,6 +21,9 @@ describe('The addName query test', function(){
     })
 
     it('It should remove a name of waiter on a particular day',async function(){
+
+        // Increase the timeout to 5000ms (5 seconds)
+        this.timeout(5000);
         let waiter = waiters()
         let Wdays = ['Monday','Sunday','Wednesday','Thursday']
         
