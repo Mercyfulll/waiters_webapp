@@ -31,4 +31,11 @@ describe('The addName query test', function(){
 
         assert.deepEqual([],await data.checkName('@Precious'))
     })
+
+    after(async function () {
+        // cleanup here
+        await data.reset()
+        //Close the database connection
+        await db.$pool.end();
+      });
 })

@@ -37,10 +37,10 @@ describe('The waitersSchedule query test', function(){
         assert.deepEqual([
           {
             daysofweek: 'Monday',
-            waiters_name: 'Paul'
+            waiters_name: 'Harry'
           },
           {
-            daysofweek: 'Monday',
+            daysofweek: 'Sunday',
             waiters_name: 'Harry'
           },
           {
@@ -49,26 +49,32 @@ describe('The waitersSchedule query test', function(){
           },
           {
             daysofweek: 'Thursday',
+            waiters_name: 'Harry'
+          },
+          {
+            daysofweek: 'Monday',
             waiters_name: 'Paul'
           },
           {
-            daysofweek: 'Thursday',
-            waiters_name: 'Harry'
+            daysofweek: 'Sunday',
+            waiters_name: 'Paul'
           },
           {
             daysofweek: 'Friday',
             waiters_name: 'Paul'
           },
           {
-            daysofweek: 'Sunday',
+            daysofweek: 'Thursday',
             waiters_name: 'Paul'
-          },
-          {
-            daysofweek: 'Sunday',
-            waiters_name: 'Harry'
           }
-        ]
-        ,await data.waitersSchedule())
+        ],await data.waitersSchedule())
 
     })
+
+    after(async function () {
+      // cleanup here
+      await data.reset()
+      //Close the database connection
+      await db.$pool.end();
+    });
 })

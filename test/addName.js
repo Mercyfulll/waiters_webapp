@@ -42,8 +42,14 @@ describe('The addName query test', function(){
             {
               waiters_name: 'Tom'
             }
-          ]
-          ,await data.checkName('Tom'))
+          ],await data.checkName('Tom'))
           
     })
+
+    after(async function () {
+      // cleanup here
+      await data.reset()
+      //Close the database connection
+      await db.$pool.end();
+    });
 })

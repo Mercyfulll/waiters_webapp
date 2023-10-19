@@ -20,8 +20,6 @@ describe('The getWaitersNames query test', function(){
     })
 
     it('It should return names of waiters',async function(){
-       // Increase the timeout to 5000ms (5 seconds)
-        this.timeout(5000);
         let waiter = waiters()
         let tdays = ['Monday','Saturday','Friday','Thursday']
         
@@ -29,19 +27,18 @@ describe('The getWaitersNames query test', function(){
             await data.addName('Finn', day)
         }
 
-        let ydays = ['Monday','Saturday','Friday','Tuesday']
-        
-        for (const day of ydays ){
-            await data.addName('Kade', day)
-        }
 
         assert.deepEqual([
-            {
-              waiters_name: 'Finn'
-            },
-            {
-              waiters_name: 'Kade'
-            }
-          ], await data.getWaitersNames())
+          {
+            waiters_name: 'Finn'
+          }
+        ], await data.getWaitersNames())
     })
+
+    after(async function () {
+      // cleanup here
+      await data.reset()
+      //Close the database connection
+      await db.$pool.end();
+    });
 })

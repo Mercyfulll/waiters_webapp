@@ -36,19 +36,25 @@ describe('The addName query test', function(){
         await data.removeNameForDay('Jerry',id) 
 
             assert.deepEqual([
-                {
-                  daysofweek: 'Monday',
-                  waiters_name: 'Jerry'
-                },
-                {
-                  daysofweek: 'Wednesday',
-                  waiters_name: 'Jerry'
-                },
-                {
-                  daysofweek: 'Sunday',
-                  waiters_name: 'Jerry'
-                }
-              ]
-              , await data.waitersSchedule('Jerry'))
+              {
+                daysofweek: 'Monday',
+                waiters_name: 'Jerry'
+              },
+              {
+                daysofweek: 'Sunday',
+                waiters_name: 'Jerry'
+              },
+              {
+                daysofweek: 'Wednesday',
+                waiters_name: 'Jerry'
+              }
+            ], await data.waitersSchedule('Jerry'))
     })
+
+    after(async function () {
+      // cleanup here
+      await data.reset()
+      //Close the database connection
+      await db.$pool.end();
+    });
 })

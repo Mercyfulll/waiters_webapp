@@ -33,4 +33,11 @@ describe('The addName query test', function(){
         assert.deepEqual([],await data.checkName('Mike34'))
         
     })
+
+    after(async function () {
+        // cleanup here
+        await data.reset()
+        //Close the database connection
+        await db.$pool.end();
+      });
 })
