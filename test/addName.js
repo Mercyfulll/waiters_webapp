@@ -67,6 +67,7 @@ describe('The addName query test', function(){
         
 
         assert.deepEqual([],await data.checkName('Mike34'))
+        
     })
 
 
