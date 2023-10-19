@@ -15,19 +15,19 @@
         </span>
         <br>
             <div class="daysOf">
-                <input type="checkbox" name="daysOfWeek" value="Monday" class="dayz"   {{#if checkboxState}}checked{{/if}} >
+                <input type="checkbox" name="daysOfWeek" value="Monday" class="dayz"    >
                 <label for="">Monday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Tuesday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
+                <input type="checkbox" name="daysOfWeek" value="Tuesday" class="dayz"  >
                 <label for="">Tuesday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Wednesday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
+                <input type="checkbox" name="daysOfWeek" value="Wednesday" class="dayz" >
                 <label for="">Wednesday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Thursday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
+                <input type="checkbox" name="daysOfWeek" value="Thursday" class="dayz" >
                 <label for="">Thursday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Friday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
+                <input type="checkbox" name="daysOfWeek" value="Friday" class="dayz" >
                 <label for="">Friday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Saturday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
+                <input type="checkbox" name="daysOfWeek" value="Saturday" class="dayz"  >
                 <label for="">Saturday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Sunday" class="dayz" {{#checkboxState}}checked{{/checkboxState}} >
+                <input type="checkbox" name="daysOfWeek" value="Sunday" class="dayz">
                 <label for="">Sunday</label><br>
             </div>
             <br>
@@ -40,26 +40,36 @@
         </div>
     </form>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const checkboxes = document.querySelectorAll('.dayz');
-            const selectedDays = new Set(); // To store selected days
+        // Function to handle checkbox state changes
+        function handleCheckboxChange(checkbox) {
+            // Get the checkbox value
+            const value = checkbox.value;
 
-                checkboxes.forEach(checkbox => {
-                    // Add an event listener for the change event
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
-                    selectedDays.add(this.value);
-                } else {
-                    selectedDays.delete(this.value);
-                }
-            });
-
-            // Check the checkbox if it's in the selectedDays set
-            if (selectedDays.has(checkbox.value)) {
-                checkbox.checked = true;
+            // Check if the checkbox is checked and save the state in localStorage
+            if (checkbox.checked) {
+                localStorage.setItem(value, 'true');
+            } else {
+                // If unchecked, remove the state from localStorage
+                localStorage.removeItem(value);
             }
-    });
-});
+        }
 
+        // Function to load and set checkbox states from localStorage
+        function loadCheckboxStates() {
+            const checkboxes = document.querySelectorAll('.dayz');
+            checkboxes.forEach(checkbox => {
+                const value = checkbox.value;
+                if (localStorage.getItem(value) === 'true') {
+                    checkbox.checked = true;
+                }
+                // Add an event listener to each checkbox
+                checkbox.addEventListener('change', function() {
+                    handleCheckboxChange(this);
+                });
+            });
+        }
+
+        // Call the function to load checkbox states when the page is loaded
+        window.addEventListener('load', loadCheckboxStates);
     </script>
 </div>

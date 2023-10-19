@@ -42,25 +42,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-// ehbs.handlebars.registerHelper('includes', function(arr, item) {
-//     //Map the array of objects to an array of days
-//     const days = arr.map(a => a.daysofweek);
-//     //Check if the item is included in the array of days
-//     return days.includes(item);
-// });
-
-// ehbs.handlebars.registerHelper('includes', function(arr, item) {
-//     if (Array.isArray(arr)) {
-//         // Use Array.some() to check if the item exists in the array of objects
-//         return arr.some(obj => obj.day === item);
-//     }
-//     return false; // Return false if arr is not an array
-// });
-
-
-
 app.get("/",route.home)
-// app.post("/",route.checkbox)
 app.post("/",route.waiterPage)
 app.post("/days",route.adminPageFunctionality)
 app.get("/days",route.adminPage)
