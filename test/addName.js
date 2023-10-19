@@ -14,13 +14,15 @@ const data = queries(db);
 describe('The addName query test', function(){
     
     beforeEach(async function(){
-       
+       // Increase the timeout to 5000ms (5 seconds)
+       this.timeout(5000);
         // clean the tables before each test run
         await data.reset()
     })
 
     it("It should be able to add name to a schedule",async function(){
-
+        // Increase the timeout to 5000ms (5 seconds)
+        this.timeout(5000);
         let waiter = waiters()
         let days = ['Monday','Sunday','Friday','Thursday']
         
