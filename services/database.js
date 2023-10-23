@@ -38,9 +38,13 @@ export default function queries(db){
     async function getDayId(day){
         return db.oneOrNone(`SELECT id FROM workdays WHERE daysofweek = $1`,[day])
     }
+    async function days(){
+        return await db.manyOrNone(`SELECT daysofweek FROM workdays`) 
+    }
     return{
         checkName,
         addName,
+        days,
         deleteName,
         waitersSchedule,
         getWaitersNames,

@@ -1,7 +1,8 @@
 export default function routes(data, waiter){
     
     async function home(req,res){
-        res.render("index")
+        const allDays = await data.days()
+        res.render("index",{allDays})
     }
                 
     async function waiterPage(req,res){

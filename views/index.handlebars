@@ -14,22 +14,13 @@
                     {{messages.error1}}
         </span>
         <br>
+            {{#each allDays}}
             <div class="daysOf">
-                <input type="checkbox" name="daysOfWeek" value="Monday" class="dayz"    >
-                <label for="">Monday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Tuesday" class="dayz"  >
-                <label for="">Tuesday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Wednesday" class="dayz" >
-                <label for="">Wednesday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Thursday" class="dayz" >
-                <label for="">Thursday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Friday" class="dayz" >
-                <label for="">Friday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Saturday" class="dayz"  >
-                <label for="">Saturday</label><br>
-                <input type="checkbox" name="daysOfWeek" value="Sunday" class="dayz">
-                <label for="">Sunday</label><br>
-            </div>
+              <input type="checkbox" name="daysOfWeek" value={{this.daysofweek}} class="dayz"    >
+                <label for="">{{this.daysofweek}}</label><br>
+            </div>   
+            {{/each}}
+            
             <br>
             <span class="success">
                 {{messages.success}}
